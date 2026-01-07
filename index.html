@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新カリキュラムシリーズ - 夢・アーキテクティング工房</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #ec4899;
+            --success: #059669;
+            --warning: #f59e0b;
+            --dark: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 3rem;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6, #2563eb);
+            border-radius: 32px;
+            padding: 6rem 5rem;
+            margin-bottom: 4rem;
+            color: white;
+            box-shadow: 0 60px 140px rgba(0,0,0,0.7);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            line-height: 1.9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 24px;
+            padding: 5rem;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem;
+            color: var(--dark);
+            margin-bottom: 3rem;
+            font-weight: 700;
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 4px solid var(--primary);
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 4px solid var(--warning);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .intro-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #78350f;
+            text-align: center;
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .curriculum-card {
+            background: white;
+            border-radius: 24px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            border: 3px solid #e2e8f0;
+        }
+
+        .curriculum-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+        }
+
+        .curriculum-card.creative {
+            border-color: #ea580c;
+        }
+
+        .curriculum-card.fep {
+            border-color: #7c3aed;
+        }
+
+        .curriculum-card.mission {
+            border-color: #ec4899;
+        }
+
+        .card-header {
+            padding: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .card-header.creative {
+            background: linear-gradient(135deg, #ea580c, #dc2626);
+        }
+
+        .card-header.fep {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+        }
+
+        .card-header.mission {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+        }
+
+        .card-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            opacity: 0.2;
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+        }
+
+        .card-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-body {
+            padding: 3rem;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        .card-features {
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #1e293b;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 1.3rem;
+        }
+
+        .card-link {
+            display: block;
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .card-link:hover {
+            background: linear-gradient(135deg, #1e40af, #1e3a8a);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+        }
+
+        .learning-path {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 4px solid var(--primary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .path-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .path-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .path-option {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border-left: 6px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .path-option-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .path-steps {
+            line-height: 2.2;
+            font-size: 1.1rem;
+            color: #475569;
+        }
+
+        .relationships {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 4px solid var(--secondary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 4rem 0;
+        }
+
+        .relationships-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .connection-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border-left: 6px solid var(--secondary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .connection-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .connection-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: #475569;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .stat-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>新カリキュラムシリーズ</h1>
+            <div class="hero-subtitle">
+                人生を変える3つの学びの旅
+            </div>
+            <div class="hero-description">
+                夢・アーキテクティング工房（Dream Architecting Manufactory）<br>
+                人間の創造性、意識、そして存在の意味を探求する<br>
+                12週間×3コースの統合的学習プログラム
+            </div>
+        </div>
+
+        <div class="content-card">
+            <div class="intro-box">
+                <div class="intro-title">🌟 このカリキュラムシリーズについて</div>
+                <div class="intro-text">
+                    現代社会において、知識やスキルだけでなく、<br>
+                    <strong>自分自身を深く理解し、創造的に生き、世界の本質を洞察する力</strong><br>
+                    がますます重要になっています。<br><br>
+                    
+                    本シリーズは、<strong>40年の実務経験</strong>、<strong>25年の教育実践</strong>、<br>
+                    そして最新の認知科学・情報幾何学の研究成果を統合し、<br>
+                    あなたの人生を根本から変える3つの学びを提供します。
+                </div>
+            </div>
+
+            <div class="section-title">📚 3つのカリキュラム</div>
+
+            <div class="curriculum-grid">
+                <!-- カリキュラム1: 創造のプロセス -->
+                <div class="curriculum-card creative">
+                    <div class="card-header creative">
+                        <div class="card-number">01</div>
+                        <div class="card-title">創造のプロセス</div>
+                        <div class="card-subtitle">The Creative Process</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            創造という人間の最も高度な知的活動を、理論と実践の両面から体系的に学びます。発散・収束プロセス、情報幾何学的理解、イノベーティブ思考法を統合し、あなた自身の創造力を最大限に引き出します。
+                        </div>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">⏱️</span>
+                                <span>12週間（120-180時間）</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <span>約280スライド</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🎯</span>
+                                <span>実践プロジェクト含む</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">👥</span>
+                                <span>全レベル対象</span>
+                            </div>
+                        </div>
+                        <a href="creative_process_curriculum_design.html" class="card-link">
+                            カリキュラム詳細を見る →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- カリキュラム2: 自由エネルギー原理 -->
+                <div class="curriculum-card fep">
+                    <div class="card-header fep">
+                        <div class="card-number">02</div>
+                        <div class="card-title">自由エネルギー原理</div>
+                        <div class="card-subtitle">Free Energy Principle</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            Karl Fristonが提唱した、生命・認知・意識を統一的に説明する革新的理論。「すべての生命システムは自由エネルギーを最小化する」という原理から、知覚・行動・学習・創造性まで理解できます。
+                        </div>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">⏱️</span>
+                                <span>12週間（144-216時間）</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <span>約280スライド</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">💻</span>
+                                <span>Python実装含む</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🧮</span>
+                                <span>数学的厳密性重視</span>
+                            </div>
+                        </div>
+                        <a href="free_energy_principle_curriculum_design.html" class="card-link">
+                            カリキュラム詳細を見る →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- カリキュラム3: 存在価値・ミッション -->
+                <div class="curriculum-card mission">
+                    <div class="card-header mission">
+                        <div class="card-number">03</div>
+                        <div class="card-title">存在価値・価値観・<br>ミッションの探求</div>
+                        <div class="card-subtitle">Mission & Values Discovery</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-description">
+                            「あなたは何のために生きているのか？」この根源的な問いに向き合い、自分だけの答えを見つける旅。哲学的探求、心理学的ワーク、生きがいモデルを統合し、人生の羅針盤を築きます。
+                        </div>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <span class="feature-icon">⏱️</span>
+                                <span>12週間（96-144時間）</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📊</span>
+                                <span>約200スライド</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">✏️</span>
+                                <span>深い内省ワーク</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">🌱</span>
+                                <span>前提知識不要</span>
+                            </div>
+                        </div>
+                        <a href="mission_values_curriculum_design.html" class="card-link">
+                            カリキュラム詳細を見る →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">カリキュラム</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">36</div>
+                    <div class="stat-label">週間（9ヶ月）</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">760</div>
+                    <div class="stat-label">総スライド数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">可能性</div>
+                </div>
+            </div>
+
+            <div class="learning-path">
+                <div class="path-title">🛤️ 推奨学習順序</div>
+                <div style="text-align: center; font-size: 1.15rem; line-height: 2; color: #1e40af; margin-bottom: 2rem;">
+                    各カリキュラムは独立していますが、以下の順序で学ぶことで<br>
+                    相乗効果が得られ、より深い理解と実践が可能になります。
+                </div>
+                
+                <div class="path-options">
+                    <div class="path-option">
+                        <div class="path-option-title">📍 推奨パス（基本）</div>
+                        <div class="path-steps">
+                            <strong>1. 存在価値・ミッション</strong><br>
+                            → 人生の基盤を築く<br><br>
+                            
+                            <strong>2. 創造のプロセス</strong><br>
+                            → ミッションを創造的に実現<br><br>
+                            
+                            <strong>3. 自由エネルギー原理</strong><br>
+                            → 理論的理解を深化
+                        </div>
+                    </div>
+
+                    <div class="path-option">
+                        <div class="path-option-title">🔬 研究者・理論派向け</div>
+                        <div class="path-steps">
+                            <strong>1. 自由エネルギー原理</strong><br>
+                            → 理論的基盤を確立<br><br>
+                            
+                            <strong>2. 創造のプロセス</strong><br>
+                            → 理論の応用を学ぶ<br><br>
+                            
+                            <strong>3. 存在価値・ミッション</strong><br>
+                            → 研究を人生と統合
+                        </div>
+                    </div>
+
+                    <div class="path-option">
+                        <div class="path-option-title">🎨 実践家・クリエイター向け</div>
+                        <div class="path-steps">
+                            <strong>1. 創造のプロセス</strong><br>
+                            → すぐに実践開始<br><br>
+                            
+                            <strong>2. 存在価値・ミッション</strong><br>
+                            → 創造の方向性を定める<br><br>
+                            
+                            <strong>3. 自由エネルギー原理</strong><br>
+                            → 理論的深みを追加
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relationships">
+                <div class="relationships-title">🔗 カリキュラム間の関係性</div>
+                
+                <div class="connection-item">
+                    <div class="connection-title">統一的な世界観</div>
+                    <div class="connection-text">
+                        3つのカリキュラムは、<strong>情報幾何学</strong>という共通の数理的基盤の上に構築されています。
+                        自由エネルギー原理が提供する生命・認知の統一理論、
+                        創造プロセスの発散・収束ダイナミクス、
+                        そして個人の価値観・ミッションの探求が、
+                        すべて情報幾何学的な枠組みで統合的に理解できます。
+                    </div>
+                </div>
+
+                <div class="connection-item">
+                    <div class="connection-title">実践と理論の循環</div>
+                    <div class="connection-text">
+                        <strong>「存在価値・ミッション」</strong>で自分の方向性を定め、<br>
+                        <strong>「創造のプロセス」</strong>でそれを実現する方法を学び、<br>
+                        <strong>「自由エネルギー原理」</strong>でその背後にある原理を理解する。<br>
+                        この循環により、表層的なスキルではなく、
+                        深い洞察に基づく実践力が身につきます。
+                    </div>
+                </div>
+
+                <div class="connection-item">
+                    <div class="connection-title">段階的な深化</div>
+                    <div class="connection-text">
+                        各カリキュラムは独立していますが、同時に相互に補完し合います。
+                        どこから始めても、他のカリキュラムを学ぶことで理解が深まり、
+                        実践が豊かになり、人生全体が統合されていきます。
+                        これは単なる知識の蓄積ではなく、<strong>存在の変容</strong>のプロセスです。
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 5rem; padding: 4rem; background: linear-gradient(135deg, #fce7f3, #fbcfe8); border-radius: 24px; text-align: center;">
+                <div style="font-family: 'Noto Serif JP', serif; font-size: 2.2rem; font-weight: 700; color: #9f1239; margin-bottom: 2rem;">
+                    🌟 あなたの旅を始めましょう
+                </div>
+                <div style="font-size: 1.2rem; line-height: 2.2; color: #831843;">
+                    この3つのカリキュラムは、あなたの人生を根本から変える可能性を秘めています。<br><br>
+                    
+                    知識を得るだけでなく、<strong>自分自身を深く理解し</strong>、<br>
+                    <strong>創造的に生き</strong>、<strong>世界の本質を洞察する</strong>力を身につけてください。<br><br>
+                    
+                    上記のカリキュラムから、あなたの興味や必要性に応じて選択し、<br>
+                    今日から学びの旅を始めましょう。
+                </div>
+            </div>
+
+            <div style="margin-top: 5rem; padding-top: 3rem; border-top: 2px solid #e2e8f0; text-align: center; color: #64748b;">
+                <p style="font-size: 1.3rem; line-height: 2.5;">
+                    <strong style="font-size: 1.6rem; color: #2563eb;">夢・アーキテクティング工房</strong><br>
+                    Dream Architecting Manufactory<br><br>
+                    
+                    <strong>カリキュラム設計・監修：</strong>片山　立 (Ryu Katayama)<br><br>
+                    
+                    <strong>専門領域：</strong><br>
+                    情報幾何学、自由エネルギー原理、創造過程の数理モデル化、<br>
+                    システムズエンジニアリング、生きがい研究<br><br>
+                    
+                    <strong style="color: #2563eb;">全3カリキュラム・36週間・約760スライド</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

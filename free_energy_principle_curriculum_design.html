@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自由エネルギー原理 - 12週間学習カリキュラム全体設計</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #2563eb;
+            --accent: #ec4899;
+            --success: #059669;
+            --warning: #d97706;
+            --dark: #0f172a;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #5b21b6 0%, #1e3a8a 100%);
+            min-height: 100vh;
+            padding: 3rem;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #7c3aed, #5b21b6);
+            border-radius: 32px;
+            padding: 5rem;
+            margin-bottom: 4rem;
+            color: white;
+            box-shadow: 0 60px 140px rgba(0,0,0,0.7);
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .paper {
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 5rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 50px 120px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin: 4rem 0 2rem 0;
+            font-weight: 700;
+            border-left: 8px solid var(--primary);
+            padding-left: 2rem;
+        }
+
+        h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin: 3rem 0 1.5rem 0;
+            font-weight: 700;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 4px solid var(--primary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 3rem 0;
+        }
+
+        .overview-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 2rem;
+        }
+
+        .phase {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border-left: 8px solid;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .phase.phase0 {
+            border-left-color: var(--success);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .phase.phase1 {
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        }
+
+        .phase.phase2 {
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        .phase.phase3 {
+            border-left-color: var(--accent);
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .phase-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .phase0 .phase-number {
+            background: var(--success);
+        }
+
+        .phase1 .phase-number {
+            background: var(--primary);
+        }
+
+        .phase2 .phase-number {
+            background: var(--secondary);
+        }
+
+        .phase3 .phase-number {
+            background: var(--accent);
+        }
+
+        .phase-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .week-block {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 3px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .week-block:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.15);
+            transform: translateX(5px);
+        }
+
+        .week-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topic-list {
+            line-height: 2;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .topic-list strong {
+            color: var(--primary);
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .milestone-box {
+            background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            border: 4px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .milestone-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #5b21b6;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border-left: 6px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .info-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--success), var(--primary), var(--secondary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+            border-left: 6px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid var(--warning);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        ul {
+            margin-left: 2rem;
+            line-height: 2;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+        <!-- ナビゲーション：目次に戻る -->
+        <div style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; padding: 3rem; margin: 4rem 0; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+            <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 1.2rem 3rem; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); font-family: 'Noto Sans JP', sans-serif;">
+                ← カリキュラム目次に戻る
+            </a>
+        </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>自由エネルギー原理</h1>
+            <div class="hero-subtitle">
+                Free Energy Principle (FEP)<br>
+                12週間学習カリキュラム - 全体設計書<br>
+                夢・アーキテクティング工房（Dream Architecting Manufactory）
+            </div>
+        </div>
+
+        <div class="paper">
+            <div class="overview">
+                <div class="overview-title">📚 カリキュラム概要</div>
+                <div style="line-height: 2.2; font-size: 1.1rem; color: #581c87;">
+                    <strong>自由エネルギー原理（Free Energy Principle: FEP）</strong>は、<br>
+                    Karl Fristonが提唱した、生命・認知・意識を統一的に説明する革新的な理論フレームワークです。<br><br>
+                    
+                    「すべての生命システムは、自由エネルギーを最小化するように行動する」<br>
+                    という単純な原理から、知覚・行動・学習・意識まで、<br>
+                    生物の複雑な振る舞いを統一的に理解できます。<br><br>
+                    
+                    本カリキュラムでは、FEPの基礎から応用まで、<br>
+                    数学的厳密性と直感的理解のバランスを取りながら、<br>
+                    体系的に学びます。<br><br>
+                    
+                    <strong>対象者：</strong><br>
+                    • 認知科学・神経科学に興味のある方<br>
+                    • AI・機械学習の理論的基盤を学びたい方<br>
+                    • 生命システムの原理に関心のある方<br>
+                    • 意識・自由意志の問題に取り組む方<br>
+                    • 創造性の科学的理解を深めたい方
+                </div>
+            </div>
+
+            <h2>基本情報</h2>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">🎯 学習期間</div>
+                    12週間（約3ヶ月）
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">⏰ 週あたり学習時間</div>
+                    12-18時間<br>
+                    （平日2-3時間/日 + 週末6時間）
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">📖 総学習時間</div>
+                    約144-216時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">📊 総スライド数</div>
+                    約280枚（予定）
+                </div>
+            </div>
+
+            <h3>前提知識</h3>
+            <div class="topic-list">
+                <strong>必須：</strong><br>
+                • 高校数学レベル（微分・積分・確率の基礎）<br>
+                • 論理的思考力<br>
+                • 抽象的概念を理解する意欲<br><br>
+                
+                <strong>強く推奨：</strong><br>
+                • 大学初年次レベルの微積分<br>
+                • 線形代数の基礎<br>
+                • 確率・統計の基礎<br>
+                • 基本的なプログラミング経験（Python推奨）<br><br>
+                
+                <strong>あると理解が深まる：</strong><br>
+                • 情報理論の基礎<br>
+                • ベイズ統計の基礎<br>
+                • 神経科学の入門知識<br>
+                • 機械学習の基礎<br><br>
+                
+                <div class="key-point">
+                    💡 <strong>重要：</strong> FEPは数学的に厳密な理論ですが、<br>
+                    直感的理解も重視します。数学が得意でなくても、<br>
+                    根気強く取り組めば本質的理解は十分可能です。<br>
+                    Phase 0で必要な数学を復習します。
+                </div>
+            </div>
+
+            <h3>到達目標</h3>
+            <div class="topic-list">
+                このカリキュラムを修了すると、以下ができるようになります：<br><br>
+                
+                <strong>1. 理論的理解：</strong><br>
+                • 自由エネルギー原理の核心を説明できる<br>
+                • ベイズ脳仮説を理解できる<br>
+                • 能動的推論（Active Inference）を説明できる<br>
+                • 予測符号化（Predictive Coding）を理解できる<br>
+                • マルコフブランケットの概念を使いこなせる<br><br>
+                
+                <strong>2. 数学的スキル：</strong><br>
+                • 変分自由エネルギーを計算できる<br>
+                • ベイズ推論の基礎を実装できる<br>
+                • 情報幾何学的視点でFEPを理解できる<br>
+                • Pythonで簡単なFEPモデルを実装できる<br><br>
+                
+                <strong>3. 応用能力：</strong><br>
+                • FEPを知覚・行動の理解に応用できる<br>
+                • 創造性・学習をFEPで説明できる<br>
+                • 意識・自由意志の問題をFEP的に考察できる<br>
+                • AI・ロボティクスへの応用を考えられる<br><br>
+                
+                <strong>4. 統合的視点：</strong><br>
+                • FEPと他の理論（情報幾何学、全脳アーキテクチャ等）を結びつけられる<br>
+                • 生命・認知・意識を統一的に理解できる<br>
+                • 自分の研究・実践にFEPを応用できる
+            </div>
+
+            <h2>カリキュラム構造</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--success);">Phase 0（第1-3週）：数学的準備とFEPの直感</strong><br>
+                    必要な数学、FEPの概要、歴史的背景
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--primary);">Phase 1（第4-6週）：FEPの理論的基盤</strong><br>
+                    変分自由エネルギー、ベイズ脳仮説、マルコフブランケット
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--secondary);">Phase 2（第7-9週）：能動的推論と予測符号化</strong><br>
+                    知覚・行動の統一理論、予測誤差最小化、学習
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--accent);">Phase 3（第10-12週）：応用と最前線</strong><br>
+                    意識・自由意志、創造性、AI応用、最新研究
+                </div>
+            </div>
+
+            <h2>Phase 0：数学的準備とFEPの直感（第1-3週）</h2>
+
+            <div class="phase phase0">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 0</div>
+                    <div class="phase-title">数学的準備とFEPの直感</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第1週：必要な数学の復習</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 確率の基礎：条件付き確率、ベイズの定理<br>
+                        • 確率分布：正規分布、指数分布、カテゴリカル分布<br>
+                        • 期待値、分散、エントロピー<br>
+                        • KLダイバージェンス（Kullback-Leibler divergence）<br>
+                        • 対数の性質と計算<br>
+                        • 微分の基礎：偏微分、勾配<br><br>
+                        
+                        <strong>Python実装：</strong><br>
+                        • NumPy/SciPyでの確率計算<br>
+                        • 確率分布の可視化<br>
+                        • KLダイバージェンスの計算<br><br>
+                        
+                        <strong>演習：</strong><br>
+                        • ベイズ推論の簡単な例<br>
+                        • エントロピー計算<br>
+                        • KLダイバージェンスの直感的理解
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第2週：FEPの直感的理解</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 生命とは何か：自己組織化、恒常性<br>
+                        • 「驚き」の最小化という考え方<br>
+                        • FEPの中心的アイデア（非技術的説明）<br>
+                        • 知覚と行動の統一的説明<br>
+                        • 簡単な例：温度調節、バランス保持<br>
+                        • FEPと進化、適応、学習<br><br>
+                        
+                        <strong>ケーススタディ：</strong><br>
+                        • 細菌の走化性<br>
+                        • 植物の光合成<br>
+                        • 人間の体温調節<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 簡単なFEPシミュレーション（1次元）<br>
+                        • 「驚き」の可視化
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第3週：FEPの歴史と関連理論</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • Karl Fristonとその研究<br>
+                        • FEPの起源：統計物理学、情報理論<br>
+                        • 関連する理論：<br>
+                        　- サイバネティクス<br>
+                        　- オートポイエーシス（Autopoiesis）<br>
+                        　- 予測符号化の前史<br>
+                        　- ベイズ脳仮説<br>
+                        • FEP研究の現状と展望<br>
+                        • 批判と論争<br><br>
+                        
+                        <strong>文献購読：</strong><br>
+                        • Friston (2010) "The free-energy principle: a unified brain theory?"<br>
+                        • 関連する入門論文<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 文献サマリー作成<br>
+                        • 自分の理解度チェック
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 0 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 必要な数学的基礎が整っている<br>
+                        • FEPの直感的イメージを持っている<br>
+                        • FEPの歴史的文脈を理解している<br>
+                        • 簡単なシミュレーションを実装できる<br>
+                        • Phase 1への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 1：FEPの理論的基盤（第4-6週）</h2>
+
+            <div class="phase phase1">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 1</div>
+                    <div class="phase-title">FEPの理論的基盤</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第4週：変分自由エネルギー</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 変分自由エネルギーの定義<br>
+                        • F = -log p(observations) + D_KL[q||p]<br>
+                        • なぜ「自由エネルギー」と呼ぶのか<br>
+                        • 変分推論（Variational Inference）の基礎<br>
+                        • ELBO（Evidence Lower BOund）<br>
+                        • 自由エネルギーの最小化 = 驚きの最小化<br><br>
+                        
+                        <strong>数学的導出：</strong><br>
+                        • 変分自由エネルギーの分解<br>
+                        • Accuracy と Complexity のトレードオフ<br>
+                        • 最小化の数理<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • 簡単な変分推論の実装<br>
+                        • 自由エネルギーの計算<br>
+                        • 可視化
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第5週：ベイズ脳仮説</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • ベイズ脳仮説とは<br>
+                        • 脳は世界の生成モデルを持つ<br>
+                        • 知覚 = ベイズ推論<br>
+                        • 事前分布と事後分布<br>
+                        • 階層的ベイズモデル<br>
+                        • 精密度（Precision）の役割<br><br>
+                        
+                        <strong>応用例：</strong><br>
+                        • 視覚的錯覚の説明<br>
+                        • 多義図形の知覚<br>
+                        • 期待と知覚の相互作用<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • 簡単なベイズ推論モデル<br>
+                        • 階層的知覚モデル<br>
+                        • シミュレーション
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第6週：マルコフブランケット</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • マルコフブランケットの定義<br>
+                        • システムと環境の境界<br>
+                        • 感覚状態と活動状態<br>
+                        • 内部状態と外部状態<br>
+                        • 統計的分離と因果的分離<br>
+                        • マルコフブランケットとFEP<br><br>
+                        
+                        <strong>応用：</strong><br>
+                        • 細胞膜とマルコフブランケット<br>
+                        • 生物個体とマルコフブランケット<br>
+                        • 社会システムとマルコフブランケット<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • グラフィカルモデルでの表現<br>
+                        • 簡単なマルコフブランケットモデル<br>
+                        • 状態遷移のシミュレーション
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 1 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 変分自由エネルギーを数式レベルで理解している<br>
+                        • ベイズ脳仮説を説明できる<br>
+                        • マルコフブランケットの概念を使いこなせる<br>
+                        • 簡単なFEPモデルを実装できる<br>
+                        • Phase 2への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 2：能動的推論と予測符号化（第7-9週）</h2>
+
+            <div class="phase phase2">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 2</div>
+                    <div class="phase-title">能動的推論と予測符号化</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第7週：能動的推論（Active Inference）</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 知覚と行動の統一理論<br>
+                        • 2つの自由エネルギー最小化経路<br>
+                        　1. 知覚：世界モデルの更新<br>
+                        　2. 行動：世界状態の変更<br>
+                        • 期待自由エネルギー（Expected Free Energy）<br>
+                        • 探索 vs 活用のトレードオフ<br>
+                        • 情報獲得（Information Gain）<br><br>
+                        
+                        <strong>応用例：</strong><br>
+                        • 到達運動（Reaching）<br>
+                        • サッケード眼球運動<br>
+                        • 意思決定<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • 簡単な能動的推論エージェント<br>
+                        • 環境との相互作用シミュレーション<br>
+                        • 探索行動の可視化
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第8週：予測符号化（Predictive Coding）</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 予測符号化の原理<br>
+                        • 予測誤差の最小化<br>
+                        • トップダウン予測とボトムアップ入力<br>
+                        • 階層的予測符号化<br>
+                        • 精密度重み付け（Precision Weighting）<br>
+                        • 注意とFEP<br><br>
+                        
+                        <strong>神経科学的基盤：</strong><br>
+                        • 大脳皮質の階層構造<br>
+                        • フィードフォワードとフィードバック<br>
+                        • 予測ニューロンと誤差ニューロン<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • 階層的予測符号化ネットワーク<br>
+                        • 予測誤差の伝播<br>
+                        • 学習シミュレーション
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第9週：学習とモデル選択</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • FEPにおける学習<br>
+                        • パラメータ学習とモデル選択<br>
+                        • 構造学習（Structure Learning）<br>
+                        • 生涯学習（Lifelong Learning）<br>
+                        • メタ学習（Meta-Learning）<br>
+                        • 発達とFEP<br><br>
+                        
+                        <strong>応用：</strong><br>
+                        • スキル獲得<br>
+                        • 習慣形成<br>
+                        • 概念学習<br><br>
+                        
+                        <strong>実装：</strong><br>
+                        • オンライン学習アルゴリズム<br>
+                        • モデル選択の実装<br>
+                        • 学習曲線の可視化
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 2 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 能動的推論を理解・実装できる<br>
+                        • 予測符号化の原理を説明できる<br>
+                        • 学習をFEP的に理解できる<br>
+                        • 知覚・行動・学習を統一的に説明できる<br>
+                        • Phase 3への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 3：応用と最前線（第10-12週）</h2>
+
+            <div class="phase phase3">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 3</div>
+                    <div class="phase-title">応用と最前線</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第10週：意識と自由意志</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • FEPと意識の問題<br>
+                        • メタ認知とFEP<br>
+                        • 自己モデル（Self-Model）<br>
+                        • 自由意志の錯覚？<br>
+                        • 主観的経験（Qualia）<br>
+                        • ハード・プロブレムとFEP<br><br>
+                        
+                        <strong>哲学的考察：</strong><br>
+                        • 決定論と自由意志<br>
+                        • 創発と還元<br>
+                        • 情報統合理論（IIT）との関係<br><br>
+                        
+                        <strong>ディスカッション：</strong><br>
+                        • FEPは意識を説明できるか<br>
+                        • 自由意志は存在するか<br>
+                        • 人工意識は可能か
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第11週：創造性とイノベーション</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 創造性のFEP的理解<br>
+                        • 探索と活用の最適化<br>
+                        • 発散思考 = エントロピー増大<br>
+                        • 収束思考 = 自由エネルギー最小化<br>
+                        • インサイト（洞察）の数理<br>
+                        • 好奇心とFEP<br><br>
+                        
+                        <strong>応用：</strong><br>
+                        • 芸術創作<br>
+                        • 科学的発見<br>
+                        • イノベーション・プロセス<br><br>
+                        
+                        <strong>統合：</strong><br>
+                        • FEP × 情報幾何学 × 創造過程<br>
+                        • 立さんの研究との接続<br>
+                        • 実践への応用
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第12週：AI応用と最前線</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • FEPとAI/機械学習<br>
+                        • 変分オートエンコーダ（VAE）<br>
+                        • 深層学習とFEP<br>
+                        • ロボティクスへの応用<br>
+                        • 全脳アーキテクチャとFEP<br>
+                        • FEP研究の最前線<br><br>
+                        
+                        <strong>実装プロジェクト：</strong><br>
+                        • FEPベースのエージェント開発<br>
+                        • または理論研究レポート<br><br>
+                        
+                        <strong>まとめ：</strong><br>
+                        • 12週間の統合<br>
+                        • 今後の学習計画<br>
+                        • FEPコミュニティへの参加
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 3 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 意識・自由意志をFEP的に考察できる<br>
+                        • 創造性をFEPで理解できる<br>
+                        • AI/ロボティクスへの応用を理解している<br>
+                        • FEP研究の最前線を知っている<br>
+                        • 継続的学習の基盤が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>学習方法とリソース</h2>
+
+            <h3>推奨学習スタイル</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">📖 理論学習</div>
+                    スライド、論文、書籍<br>
+                    週5-7時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">💻 実装</div>
+                    Python、シミュレーション<br>
+                    週4-6時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">📝 演習</div>
+                    数式導出、計算問題<br>
+                    週2-3時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">🤔 考察</div>
+                    ディスカッション、レポート<br>
+                    週1-2時間
+                </div>
+            </div>
+
+            <h3>必要な教材・ツール</h3>
+            <div class="topic-list">
+                <strong>基本教材：</strong><br>
+                • 各週のスライド（PDF/HTML）<br>
+                • 演習問題集<br>
+                • Python実装サンプルコード<br><br>
+                
+                <strong>推奨図書：</strong><br>
+                • "Active Inference: The Free Energy Principle in Mind, Brain, and Behavior" (Parr, Pezzulo, Friston)<br>
+                • "The free-energy principle: a unified brain theory?" (Friston, 2010)<br>
+                • "Surfing Uncertainty" (Andy Clark)<br>
+                • 『予測する脳』（アンディ・クラーク、邦訳）<br><br>
+                
+                <strong>必須ツール：</strong><br>
+                • Python 3.x<br>
+                • NumPy、SciPy、Matplotlib<br>
+                • Jupyter Notebook<br><br>
+                
+                <strong>推奨ツール：</strong><br>
+                • PyMDP（FEPライブラリ）<br>
+                • JAX（高度な実装用）<br>
+                • Mathematica/MATLAB（数式処理）
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 難易度について：</strong><br><br>
+                
+                FEPは数学的に厳密な理論であり、学習には相応の努力が必要です。<br>
+                特にPhase 1-2は抽象度が高く、挫折しやすい部分です。<br><br>
+                
+                しかし、根気強く取り組めば、必ず理解できます。<br>
+                わからない部分は何度も読み返し、実装で確認し、<br>
+                仲間と議論することで、徐々に霧が晴れていきます。<br><br>
+                
+                完璧な理解を目指すより、全体像の把握を優先しましょう。
+            </div>
+
+            <h2>関連カリキュラム</h2>
+
+            <div class="topic-list">
+                <strong>推奨受講順序：</strong><br><br>
+                
+                1. <strong>「情報幾何学入門」（前提または並行）</strong><br>
+                   → FEPの数理的基盤を深く理解<br><br>
+                
+                2. <strong>「自由エネルギー原理」（本カリキュラム）</strong><br>
+                   → FEPの基礎から応用まで<br><br>
+                
+                3. <strong>「創造のプロセス」（応用）</strong><br>
+                   → FEPを創造性研究に応用<br><br>
+                
+                <strong>発展的学習：</strong><br>
+                • 全脳アーキテクチャ<br>
+                • 計算神経科学<br>
+                • ベイズ統計学<br>
+                • 強化学習<br>
+                • 意識の科学
+            </div>
+
+            <h2>著者・連絡先</h2>
+
+            <div style="margin-top: 3rem; padding: 3rem; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; text-align: center;">
+                <div style="font-size: 1.3rem; line-height: 2.2; color: var(--text);">
+                    <strong style="font-size: 1.5rem; color: var(--primary);">夢・アーキテクティング工房</strong><br>
+                    Dream Architecting Manufactory<br><br>
+                    
+                    <strong>カリキュラム設計：</strong>片山　立 (Ryu Katayama)<br><br>
+                    
+                    <strong>専門領域：</strong><br>
+                    情報幾何学、自由エネルギー原理、<br>
+                    全脳アーキテクチャ、創造過程の数理モデル化<br><br>
+                    
+                    <div style="margin-top: 2rem; font-size: 1.1rem; color: var(--text-light);">
+                        本カリキュラムは、FEP研究の最前線と、<br>
+                        立さんの統合的創造変容研究を結びつけるものです。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- ナビゲーション：目次に戻る -->
+        <div style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; padding: 3rem; margin: 4rem 0; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+            <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 1.2rem 3rem; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); font-family: 'Noto Sans JP', sans-serif;">
+                ← カリキュラム目次に戻る
+            </a>
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自分の存在価値・価値観・ミッションの探求 - 12週間学習カリキュラム全体設計</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&family=Noto+Sans+JP:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ec4899;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --success: #059669;
+            --warning: #d97706;
+            --dark: #0f172a;
+            --surface: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+            min-height: 100vh;
+            padding: 3rem;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ec4899, #be185d);
+            border-radius: 32px;
+            padding: 5rem;
+            margin-bottom: 4rem;
+            color: white;
+            box-shadow: 0 60px 140px rgba(0,0,0,0.7);
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 1.6rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .paper {
+            background: var(--surface);
+            border-radius: 28px;
+            padding: 5rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 50px 120px rgba(0,0,0,0.6);
+        }
+
+        h2 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.8rem;
+            color: var(--dark);
+            margin: 4rem 0 2rem 0;
+            font-weight: 700;
+            border-left: 8px solid var(--primary);
+            padding-left: 2rem;
+        }
+
+        h3 {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin: 3rem 0 1.5rem 0;
+            font-weight: 700;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+            border: 4px solid var(--primary);
+            border-radius: 24px;
+            padding: 4rem;
+            margin: 3rem 0;
+        }
+
+        .overview-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #9f1239;
+            margin-bottom: 2rem;
+        }
+
+        .phase {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border-left: 8px solid;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .phase.phase0 {
+            border-left-color: var(--success);
+            background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        }
+
+        .phase.phase1 {
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, #fdf2f8, #fce7f3);
+        }
+
+        .phase.phase2 {
+            border-left-color: var(--secondary);
+            background: linear-gradient(135deg, #faf5ff, #f3e8ff);
+        }
+
+        .phase.phase3 {
+            border-left-color: var(--accent);
+            background: linear-gradient(135deg, #fffbeb, #fef3c7);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .phase-number {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .phase0 .phase-number {
+            background: var(--success);
+        }
+
+        .phase1 .phase-number {
+            background: var(--primary);
+        }
+
+        .phase2 .phase-number {
+            background: var(--secondary);
+        }
+
+        .phase3 .phase-number {
+            background: var(--accent);
+        }
+
+        .phase-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+
+        .week-block {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            border: 3px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .week-block:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(236, 72, 153, 0.15);
+            transform: translateX(5px);
+        }
+
+        .week-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .topic-list {
+            line-height: 2;
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .topic-list strong {
+            color: var(--primary);
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .milestone-box {
+            background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+            border: 4px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+
+        .milestone-title {
+            font-family: 'Noto Serif JP', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #9f1239;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            border-left: 6px solid var(--primary);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .info-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin: 3rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--success), var(--primary), var(--secondary), var(--accent));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+
+        .key-point {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 6px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border: 3px solid var(--warning);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        ul {
+            margin-left: 2rem;
+            line-height: 2;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+        <!-- ナビゲーション：目次に戻る -->
+        <div style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; padding: 3rem; margin: 4rem 0; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+            <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 1.2rem 3rem; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); font-family: 'Noto Sans JP', sans-serif;">
+                ← カリキュラム目次に戻る
+            </a>
+        </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>自分の存在価値・価値観・<br>ミッションの探求</h1>
+            <div class="hero-subtitle">
+                12週間学習カリキュラム - 全体設計書<br>
+                人生の意味を見つける旅<br>
+                夢・アーキテクティング工房（Dream Architecting Manufactory）
+            </div>
+        </div>
+
+        <div class="paper">
+            <div class="overview">
+                <div class="overview-title">📚 カリキュラム概要</div>
+                <div style="line-height: 2.2; font-size: 1.1rem; color: #831843;">
+                    <strong>「あなたは何のために生きているのか？」</strong><br><br>
+                    
+                    この根源的な問いに向き合い、自分だけの答えを見つける旅です。<br><br>
+                    
+                    本カリキュラムでは、哲学的探求、心理学的ワーク、<br>
+                    そして実践的な価値観明確化の手法を統合し、<br>
+                    あなた自身の<strong>存在価値</strong>、<strong>価値観</strong>、<strong>ミッション</strong>を<br>
+                    深く理解し、明確化していきます。<br><br>
+                    
+                    単なる「自己啓発」ではなく、実存的な問いと真摯に向き合い、<br>
+                    人生の羅針盤となる確固たる基盤を築きます。<br><br>
+                    
+                    <strong>対象者：</strong><br>
+                    • 人生の意味を真剣に考えたい方<br>
+                    • 自分の価値観を明確にしたい方<br>
+                    • キャリアの転換期にある方<br>
+                    • より充実した人生を送りたい方<br>
+                    • リーダーシップを発揮したい方<br>
+                    • すべての探求者
+                </div>
+            </div>
+
+            <h2>基本情報</h2>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">🎯 学習期間</div>
+                    12週間（約3ヶ月）
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">⏰ 週あたり学習時間</div>
+                    8-12時間<br>
+                    （平日1-2時間/日 + 週末4時間）
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">📖 総学習時間</div>
+                    約96-144時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">📊 総スライド数</div>
+                    約200枚（予定）
+                </div>
+            </div>
+
+            <h3>前提知識</h3>
+            <div class="topic-list">
+                <strong>必須：</strong><br>
+                • 特になし<br>
+                • 自分自身と真摯に向き合う覚悟<br>
+                • 変化を恐れない勇気<br><br>
+                
+                <strong>あると役立つ：</strong><br>
+                • ある程度の人生経験<br>
+                • 内省の習慣<br>
+                • 日記を書く習慣<br><br>
+                
+                <div class="key-point">
+                    💡 <strong>重要：</strong> このカリキュラムは「正解を教える」ものではありません。<br>
+                    あなた自身の中にある答えを引き出し、明確化するためのガイドです。<br>
+                    心を開いて、正直に、自分自身と対話してください。
+                </div>
+            </div>
+
+            <h3>到達目標</h3>
+            <div class="topic-list">
+                このカリキュラムを修了すると、以下が得られます：<br><br>
+                
+                <strong>1. 自己理解：</strong><br>
+                • 自分の核心的な価値観を明確に言語化できる<br>
+                • 自分の強み・才能を理解している<br>
+                • 自分の人生の物語を語れる<br>
+                • 過去の経験の意味を理解している<br><br>
+                
+                <strong>2. 方向性の明確化：</strong><br>
+                • 自分のミッション・ステートメントを持っている<br>
+                • 人生の優先順位が明確になっている<br>
+                • 意思決定の軸を持っている<br>
+                • 長期的なビジョンを描けている<br><br>
+                
+                <strong>3. 実践的スキル：</strong><br>
+                • 価値観に基づいた意思決定ができる<br>
+                • 自分に合った目標設定ができる<br>
+                • 価値観の対立を解消できる<br>
+                • 継続的な自己探求ができる<br><br>
+                
+                <strong>4. 内的変容：</strong><br>
+                • 自己受容が深まっている<br>
+                • 人生の意味を感じられている<br>
+                • より充実した日々を送れている<br>
+                • 自分らしく生きる勇気を持っている
+            </div>
+
+            <h2>カリキュラム構造</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--success);">Phase 0（第1-3週）：自己との出会い</strong><br>
+                    自己理解の基礎、自分史の振り返り、価値観の発見
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--primary);">Phase 1（第4-6週）：価値観の明確化</strong><br>
+                    核心的価値観、信念体系、人生の優先順位
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--secondary);">Phase 2（第7-9週）：ミッションの発見</strong><br>
+                    才能・強み、社会への貢献、ミッション・ステートメント
+                </div>
+                
+                <div class="timeline-item">
+                    <strong style="font-size: 1.3rem; color: var(--accent);">Phase 3（第10-12週）：統合と実践</strong><br>
+                    生き方の設計、実践計画、継続的成長
+                </div>
+            </div>
+
+            <h2>Phase 0：自己との出会い（第1-3週）</h2>
+
+            <div class="phase phase0">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 0</div>
+                    <div class="phase-title">自己との出会い</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第1週：自己理解の旅の始まり</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 自己探求とは何か<br>
+                        • なぜ自己理解が重要なのか<br>
+                        • 自己概念の多層性<br>
+                        • 「本当の自分」という神話<br>
+                        • 自己との対話の方法<br>
+                        • ジャーナリング（日記）の技法<br><br>
+                        
+                        <strong>哲学的考察：</strong><br>
+                        • ソクラテス「汝自身を知れ」<br>
+                        • 実存主義と自己<br>
+                        • 東洋哲学における自己<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 自己紹介の書き直し（5回）<br>
+                        • 「私とは誰か」エッセイ<br>
+                        • ジャーナリングの開始
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第2週：自分史を振り返る</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • ライフライン・チャートの作成<br>
+                        • 人生の転機の意味<br>
+                        • 喜びの源泉を探る<br>
+                        • 困難が教えてくれたこと<br>
+                        • 影響を受けた人々<br>
+                        • 繰り返されるパターン<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • 幼少期〜現在までの年表作成<br>
+                        • 重要な10の出来事<br>
+                        • 各出来事が今の自分に与えた影響<br>
+                        • 自分史の物語化<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 自分史プレゼンテーション<br>
+                        • ピア・フィードバック<br>
+                        • 新たな気づきの統合
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第3週：価値観の発見</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 価値観とは何か<br>
+                        • 価値観と信念の違い<br>
+                        • 価値観の階層性<br>
+                        • 無意識の価値観<br>
+                        • 文化的・社会的価値観の影響<br>
+                        • 価値観の対立<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • 価値観リスト（100項目）からの選択<br>
+                        • トップ10価値観の抽出<br>
+                        • 各価値観の定義づけ<br>
+                        • 価値観の優先順位づけ<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 価値観インタビュー（ペアワーク）<br>
+                        • 価値観マップの作成<br>
+                        • 価値観と行動の一致度チェック
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 0 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 自己理解の重要性を認識している<br>
+                        • 自分の人生の物語を語れる<br>
+                        • 主要な価値観を特定している<br>
+                        • ジャーナリングの習慣ができている<br>
+                        • Phase 1への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 1：価値観の明確化（第4-6週）</h2>
+
+            <div class="phase phase1">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 1</div>
+                    <div class="phase-title">価値観の明確化</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第4週：核心的価値観の特定</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 表層的価値観と核心的価値観<br>
+                        • 「なぜ？」を5回繰り返す<br>
+                        • 価値観の背後にある欲求<br>
+                        • マズローの欲求階層との関連<br>
+                        • 核心的価値観の3-5個への絞り込み<br>
+                        • 各価値観の深い理解<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • ルーツ分析（各価値観の起源を探る）<br>
+                        • 価値観の定義文の作成<br>
+                        • 価値観を体現している場面の回想<br>
+                        • 価値観が満たされない時の感情<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 価値観エッセイの執筆<br>
+                        • グループ・ディスカッション<br>
+                        • フィードバックの統合
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第5週：信念体系の探求</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 信念とは何か<br>
+                        • エンパワリング vs リミティング・ビリーフ<br>
+                        • 自分についての信念<br>
+                        • 他者についての信念<br>
+                        • 世界についての信念<br>
+                        • 信念の書き換え<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • コア・ビリーフの特定<br>
+                        • 制限的信念のリストアップ<br>
+                        • 信念の証拠探し<br>
+                        • 信念への挑戦<br>
+                        • 新しい信念の構築<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • ビリーフ・チェンジ・ワーク<br>
+                        • アファメーションの作成<br>
+                        • 行動実験の設計
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第6週：人生の優先順位</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • ライフバランスの神話<br>
+                        • 真の優先順位とは<br>
+                        • 時間とエネルギーの配分<br>
+                        • 人生の主要領域（健康、家族、仕事、成長、etc.）<br>
+                        • 各領域への投資度<br>
+                        • 理想と現実のギャップ<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • ライフホイール作成（現状）<br>
+                        • ライフホイール作成（理想）<br>
+                        • ギャップ分析<br>
+                        • 優先順位マトリクス<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 1週間の時間記録<br>
+                        • 価値観と時間配分の一致度分析<br>
+                        • 調整計画の策定
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 1 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 核心的価値観を明確に言語化できる<br>
+                        • 自分の信念体系を理解している<br>
+                        • 人生の優先順位が明確になっている<br>
+                        • 価値観に基づく意思決定ができる<br>
+                        • Phase 2への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 2：ミッションの発見（第7-9週）</h2>
+
+            <div class="phase phase2">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 2</div>
+                    <div class="phase-title">ミッションの発見</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第7週：才能と強みの発見</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 才能 vs スキル vs 知識<br>
+                        • 強みの発見方法<br>
+                        • フロー状態と才能<br>
+                        • 無意識の有能性<br>
+                        • 他者からのフィードバック<br>
+                        • 才能の開発<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • ストレングス・ファインダー（または類似ツール）<br>
+                        • 「私が楽にできること」リスト<br>
+                        • 「時間を忘れる瞬間」の振り返り<br>
+                        • 360度フィードバック<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 強みを使った小プロジェクト<br>
+                        • 強みの記録（1週間）<br>
+                        • 才能と価値観の統合
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第8週：社会への貢献を考える</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 「世界が必要としていること」<br>
+                        • 社会的インパクト<br>
+                        • 自分にしかできない貢献<br>
+                        • レガシー（遺産）を考える<br>
+                        • 生きがいモデル（Ikigai）<br>
+                        • 利己と利他の統合<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • 生きがいモデルの4要素分析<br>
+                        　- 好きなこと<br>
+                        　- 得意なこと<br>
+                        　- 世界が必要とすること<br>
+                        　- 報酬を得られること<br>
+                        • 重なり合う領域の探索<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 貢献可能性マップの作成<br>
+                        • インパクト・ストーリーの執筆<br>
+                        • 小さな貢献の実践
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第9週：ミッション・ステートメント</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • ミッション・ステートメントとは<br>
+                        • パーソナル vs オーガニゼーショナル<br>
+                        • 優れたミッション・ステートメントの条件<br>
+                        • 複数の人生の役割<br>
+                        • 統合的ミッションの構築<br>
+                        • ミッションの進化<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • ミッション・ステートメントのドラフト作成<br>
+                        • 複数バージョンの試作<br>
+                        • フィードバック・セッション<br>
+                        • 洗練と統合<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 最終版ミッション・ステートメントの完成<br>
+                        • ビジュアル化（ビジョンボード等）<br>
+                        • 宣言セレモニー
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 2 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 自分の才能・強みを明確に理解している<br>
+                        • 社会への貢献の形が見えている<br>
+                        • パーソナル・ミッション・ステートメントを持っている<br>
+                        • 生きがい（Ikigai）を発見している<br>
+                        • Phase 3への準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>Phase 3：統合と実践（第10-12週）</h2>
+
+            <div class="phase phase3">
+                <div class="phase-header">
+                    <div class="phase-number">Phase 3</div>
+                    <div class="phase-title">統合と実践</div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第10週：価値観に基づく生き方の設計</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 価値観→ビジョン→目標→行動<br>
+                        • SMART目標 vs 価値観ベース目標<br>
+                        • 習慣の設計<br>
+                        • 環境の設計<br>
+                        • 人間関係の整理<br>
+                        • 価値観に合わない要素の削減<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • 1年後のビジョン<br>
+                        • 3年後のビジョン<br>
+                        • 10年後のビジョン<br>
+                        • 逆算的計画<br>
+                        • 90日プランの作成<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 週間スケジュールの再設計<br>
+                        • 新習慣の開始<br>
+                        • 環境整備
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第11週：実践と調整</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 価値観に基づく意思決定<br>
+                        • 価値観の対立への対処<br>
+                        • バランスの取り方<br>
+                        • 失敗からの学び<br>
+                        • 柔軟性と一貫性<br>
+                        • 定期的な見直し<br><br>
+                        
+                        <strong>ワーク：</strong><br>
+                        • 意思決定フレームワークの構築<br>
+                        • 週次レビューの設計<br>
+                        • 月次レビューの設計<br>
+                        • 年次レビューの設計<br><br>
+                        
+                        <strong>実習：</strong><br>
+                        • 実際の意思決定への適用<br>
+                        • レビュー・セッション<br>
+                        • 調整と改善
+                    </div>
+                </div>
+
+                <div class="week-block">
+                    <div class="week-title">📅 第12週：継続的成長への道</div>
+                    <div class="topic-list">
+                        <strong>学習内容：</strong><br>
+                        • 自己探求は終わらない旅<br>
+                        • 価値観の進化<br>
+                        • 人生の転機への対応<br>
+                        • コミュニティとの繋がり<br>
+                        • メンター・仲間の重要性<br>
+                        • 次のステップ<br><br>
+                        
+                        <strong>最終課題：</strong><br>
+                        • 12週間の統合レポート<br>
+                        • パーソナル・マニフェスト（宣言文）<br>
+                        • 今後の継続計画<br>
+                        • 最終プレゼンテーション<br><br>
+                        
+                        <strong>セレブレーション：</strong><br>
+                        • 成長の祝福<br>
+                        • 仲間との絆<br>
+                        • 新しい旅の始まり
+                    </div>
+                </div>
+
+                <div class="milestone-box">
+                    <div class="milestone-title">🎯 Phase 3 到達目標</div>
+                    <div style="line-height: 2;">
+                        • 価値観に基づく人生設計ができている<br>
+                        • 実践的な行動計画を持っている<br>
+                        • 継続的な自己探求の習慣がある<br>
+                        • 自分らしく生きる自信を持っている<br>
+                        • 次のステージへの準備が整っている
+                    </div>
+                </div>
+            </div>
+
+            <h2>学習方法とリソース</h2>
+
+            <h3>推奨学習スタイル</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">📖 理論学習</div>
+                    スライド、書籍、哲学<br>
+                    週2-3時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">✏️ ワーク</div>
+                    個人ワーク、ジャーナリング<br>
+                    週3-5時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">👥 対話</div>
+                    グループ、ペア、メンター<br>
+                    週1-2時間
+                </div>
+
+                <div class="info-card">
+                    <div class="info-card-title">🧘 実践</div>
+                    瞑想、実行、振り返り<br>
+                    週2-3時間
+                </div>
+            </div>
+
+            <h3>必要な教材・ツール</h3>
+            <div class="topic-list">
+                <strong>基本教材：</strong><br>
+                • 各週のスライド<br>
+                • ワークブック<br>
+                • ジャーナル（ノート）<br><br>
+                
+                <strong>推奨図書：</strong><br>
+                • 『7つの習慣』（スティーブン・R・コヴィー）<br>
+                • 『夜と霧』（ヴィクトール・フランクル）<br>
+                • 『LIFE SHIFT』（リンダ・グラットン）<br>
+                • 『エッセンシャル思考』（グレッグ・マキューン）<br>
+                • 『ストレングス・ファインダー 2.0』<br><br>
+                
+                <strong>オプションツール：</strong><br>
+                • 瞑想アプリ<br>
+                • 目標管理アプリ<br>
+                • マインドマップツール
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 心の準備：</strong><br><br>
+                
+                この旅は、時に辛く、困難なものになるかもしれません。<br>
+                自分の過去と向き合い、現在を直視し、未来を選択することは、<br>
+                勇気のいることです。<br><br>
+                
+                しかし、それこそが真の成長への道です。<br>
+                一人で抱え込まず、仲間と共に、時にはプロの助けも借りながら、<br>
+                この旅を進めてください。<br><br>
+                
+                あなたは一人ではありません。
+            </div>
+
+            <h2>関連カリキュラム</h2>
+
+            <div class="topic-list">
+                <strong>推奨受講順序：</strong><br><br>
+                
+                1. <strong>「自分の存在価値・ミッション探求」（本カリキュラム）</strong><br>
+                   → 人生の基盤を築く<br><br>
+                
+                2. <strong>「創造のプロセス」</strong><br>
+                   → 自分のミッションを創造的に実現する<br><br>
+                
+                3. <strong>「自由エネルギー原理」</strong><br>
+                   → 自己と世界の関係を深く理解する<br><br>
+                
+                <strong>発展的学習：</strong><br>
+                • リーダーシップ開発<br>
+                • コーチング・スキル<br>
+                • マインドフルネス<br>
+                • 実存心理学<br>
+                • システム思考
+            </div>
+
+            <h2>著者・連絡先</h2>
+
+            <div style="margin-top: 3rem; padding: 3rem; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; text-align: center;">
+                <div style="font-size: 1.3rem; line-height: 2.2; color: var(--text);">
+                    <strong style="font-size: 1.5rem; color: var(--primary);">夢・アーキテクティング工房</strong><br>
+                    Dream Architecting Manufactory<br><br>
+                    
+                    <strong>カリキュラム設計：</strong>片山　立 (Ryu Katayama)<br><br>
+                    
+                    <strong>専門領域：</strong><br>
+                    創造的変容、生きがい研究、<br>
+                    システムズエンジニアリング、イノベーション<br><br>
+                    
+                    <div style="margin-top: 2rem; font-size: 1.1rem; color: var(--text-light);">
+                        本カリキュラムは、25年の「魂活」実践と<br>
+                        171人のコーチング経験から生まれました。<br>
+                        あなたの旅が実り多きものとなりますように。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- ナビゲーション：目次に戻る -->
+        <div style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 20px; padding: 3rem; margin: 4rem 0; text-align: center; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
+            <a href="index.html" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e40af); color: white; padding: 1.2rem 3rem; border-radius: 16px; text-decoration: none; font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); font-family: 'Noto Sans JP', sans-serif;">
+                ← カリキュラム目次に戻る
+            </a>
+        </div>
+
+</body>
+</html>
